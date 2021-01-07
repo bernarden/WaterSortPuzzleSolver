@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30804.86
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterSortPuzzleSolver", "WaterSortPuzzleSolver\WaterSortPuzzleSolver.csproj", "{BB1C44A6-4172-4C97-8DAB-32085154FB8B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WaterSortPuzzleSolver.Tests", "WaterSortPuzzleSolver.Tests\WaterSortPuzzleSolver.Tests.csproj", "{C7DCE7B1-98C4-4693-9BA0-2860DE8E6B15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB1C44A6-4172-4C97-8DAB-32085154FB8B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB1C44A6-4172-4C97-8DAB-32085154FB8B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB1C44A6-4172-4C97-8DAB-32085154FB8B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB1C44A6-4172-4C97-8DAB-32085154FB8B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7DCE7B1-98C4-4693-9BA0-2860DE8E6B15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7DCE7B1-98C4-4693-9BA0-2860DE8E6B15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7DCE7B1-98C4-4693-9BA0-2860DE8E6B15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7DCE7B1-98C4-4693-9BA0-2860DE8E6B15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {220EA802-8C85-403D-BF69-DFFD8305EF6F}
+	EndGlobalSection
+EndGlobal
