@@ -1,6 +1,8 @@
-﻿namespace WaterSortPuzzleSolver
+﻿using System.Collections.Generic;
+
+namespace WaterSortPuzzleSolver
 {
-    public record FluidMove
+    public class FluidMove
     {
         public FluidMove(Vial from, Vial to)
         {
@@ -16,12 +18,19 @@
 
         private Vial OriginalFromState { get; }
         private Vial OriginalToState { get; }
-        private string Moved { get; set; }
+
+        private List<int> MovedFluid { get; set; } = new();
+        
+        public string UniqueMoveIdentifier => $"{OriginalFromState} => {OriginalToState}";
 
         public void Execute()
         {
-            var moved = ReferencedFrom.TransferTopFluid(ReferencedTo);
-            Moved = string.Join(", ", moved);
+            MovedFluid = ReferencedFrom.TransferTopFluid(ReferencedTo);
+        }
+
+        public void Reverse()
+        {
+            ReferencedFrom.ReverseFluidTransfer(ReferencedTo, MovedFluid);
         }
     }
 }

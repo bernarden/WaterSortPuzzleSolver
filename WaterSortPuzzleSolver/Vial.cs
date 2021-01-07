@@ -60,7 +60,8 @@ namespace WaterSortPuzzleSolver
 
         public Vial Clone()
         {
-            return new(_content.ToArray()) { Id = Id };
+            var values = Enumerable.Repeat(0, AvailableSpace).Concat(_content.ToArray());
+            return new Vial(values) { Id = Id };
         }
 
         public List<int> TransferTopFluid(Vial other)
@@ -76,6 +77,15 @@ namespace WaterSortPuzzleSolver
             }
 
             return moved;
+        }
+
+        public void ReverseFluidTransfer(Vial other, List<int> fluidToReverse)
+        {
+            for (int i = 0; i < fluidToReverse.Count; i++)
+            {
+                int item = other._content.Pop();
+                _content.Push(item);
+            }
         }
     }
 }

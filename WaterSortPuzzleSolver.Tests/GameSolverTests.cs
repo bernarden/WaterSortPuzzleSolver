@@ -14,9 +14,9 @@ namespace WaterSortPuzzleSolver.Tests
         }
 
         [Fact]
-        public void EasyScenario()
+        public void VeryEasyScenario()
         {
-            // Arrange (Level 5)
+            // Arrange
             var vials = new List<Vial>
             {
                 new(new[] { 1, 2, 3, 1 }),
@@ -39,9 +39,36 @@ namespace WaterSortPuzzleSolver.Tests
         }
 
         [Fact]
+        public void EasyScenario()
+        {
+            // Arrange 
+            var vials = new List<Vial>
+            {
+                new(new[] { 1, 2, 3, 4 }),
+                new(new[] { 1, 2, 4, 3 }),
+                new(new[] { 5, 3, 5, 1 }),
+                new(new[] { 2, 5, 1, 3 }),
+                new(new[] { 2, 5, 4, 4 }),
+                new(new int[4]),
+                new(new int[4]),
+            };
+
+            // Act
+            var result = GameSolver.Solve(vials);
+
+            // Assert
+            PrintVials("Result: ", vials);
+            Assert.Equal(result.Count, vials.Count);
+            foreach (var vial in result)
+            {
+                Assert.True(vial.IsEmpty || vial.IsComplete);
+            }
+        }
+
+        [Fact]
         public void MediumScenario()
         {
-            // Arrange (Level 50)
+            // Arrange
             var vials = new List<Vial>
             {
                 new(new[] { 1, 2, 3, 4 }),
@@ -58,12 +85,12 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
 
             // Assert
             PrintVials("Result: ", vials);
-            Assert.Equal(result.Count, vials.Count);
-            foreach (var vial in result)
+            Assert.Equal(result.CurrentState.Count, vials.Count);
+            foreach (var vial in result.CurrentState)
             {
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
