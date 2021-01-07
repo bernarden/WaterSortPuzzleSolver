@@ -1,6 +1,4 @@
-﻿using System.Linq;
-
-namespace WaterSortPuzzleSolver
+﻿namespace WaterSortPuzzleSolver
 {
     public record FluidMove
     {

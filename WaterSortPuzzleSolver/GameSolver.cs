@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace WaterSortPuzzleSolver
 {
@@ -8,7 +7,7 @@ namespace WaterSortPuzzleSolver
         public static List<Vial> Solve(List<Vial> vialState)
         {
             var moves = new List<FluidMove>();
-            while (ShouldContinue(vialState))
+            while (ShouldContinue(vialState) && moves.Count < 10000)
             {
                 foreach (var vial in vialState)
                 {
@@ -30,7 +29,7 @@ namespace WaterSortPuzzleSolver
             return vialState;
         }
 
-        private static bool ShouldContinue(List<Vial> vialState)
+        private static bool ShouldContinue(IEnumerable<Vial> vialState)
         {
             bool shouldContinue = false;
             foreach (var vial in vialState)

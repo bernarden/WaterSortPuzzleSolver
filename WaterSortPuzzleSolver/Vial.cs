@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace WaterSortPuzzleSolver
 {
     public class Vial
     {
+        private static int _lastVialId = 1;
+        private static int NextVialId => _lastVialId++;
+
         private readonly Stack<int> _content = new();
 
         public Vial(IEnumerable<int> content)
         {
+            Id = NextVialId;
             var values = content.Reverse().ToList();
             MaxSize = values.Count;
             foreach (int value in values.Where(value => value != 0))
@@ -17,6 +20,8 @@ namespace WaterSortPuzzleSolver
                 _content.Push(value);
             }
         }
+
+        public int Id { get; private init; }
 
         public int MaxSize { get; }
 
@@ -50,12 +55,12 @@ namespace WaterSortPuzzleSolver
         public override string ToString()
         {
             var representation = Enumerable.Repeat(0, AvailableSpace).Concat(_content.ToArray());
-            return string.Join(", ", representation.ToArray());
+            return $"{Id}: " + string.Join(", ", representation.ToArray());
         }
 
         public Vial Clone()
         {
-            return new(_content.ToArray());
+            return new(_content.ToArray()) { Id = Id };
         }
 
         public List<int> TransferTopFluid(Vial other)
