@@ -27,12 +27,12 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
 
             // Assert
             PrintVials("Result: ", vials);
-            Assert.Equal(result.Count, vials.Count);
-            foreach (var vial in result)
+            Assert.Equal(result.CurrentState.Count, vials.Count);
+            foreach (var vial in result.CurrentState)
             {
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
@@ -54,12 +54,12 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
 
             // Assert
             PrintVials("Result: ", vials);
-            Assert.Equal(result.Count, vials.Count);
-            foreach (var vial in result)
+            Assert.Equal(result.CurrentState.Count, vials.Count);
+            foreach (var vial in result.CurrentState)
             {
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
@@ -68,7 +68,7 @@ namespace WaterSortPuzzleSolver.Tests
         [Fact]
         public void MediumScenario()
         {
-            // Arrange
+            // Arrange https://www.youtube.com/watch?v=ez1Wo78TyfU
             var vials = new List<Vial>
             {
                 new(new[] { 1, 2, 3, 4 }),
@@ -80,6 +80,40 @@ namespace WaterSortPuzzleSolver.Tests
                 new(new[] { 2, 3, 6, 1 }),
                 new(new[] { 9, 4, 9, 6 }),
                 new(new[] { 9, 1, 8, 6 }),
+                new(new int[4]),
+                new(new int[4]),
+            };
+
+            // Act
+            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
+
+            // Assert
+            PrintVials("Result: ", vials);
+            Assert.Equal(result.CurrentState.Count, vials.Count);
+            foreach (var vial in result.CurrentState)
+            {
+                Assert.True(vial.IsEmpty || vial.IsComplete);
+            }
+        }
+
+        [Fact]
+        public void DifficultScenario()
+        {
+            // Arrange (level 125?)
+            var vials = new List<Vial>
+            {
+                new(new[] { 1, 2, 3, 4 }),
+                new(new[] { 2, 5, 3, 2 }),
+                new(new[] { 5, 4, 6, 7, }),
+                new(new[] { 8, 8, 9, 5, }),
+                new(new[] { 6, 9, 9, 1 }),
+                new(new[] { 10, 11, 4, 12 }),
+                new(new[] { 6, 10, 4, 3 }),
+                new(new[] { 12, 12, 7, 1 }),
+                new(new[] { 8, 3, 1, 6 }),
+                new(new[] { 11, 12, 10, 8 }),
+                new(new[] { 7, 9, 10, 11 }),
+                new(new[] { 5, 2, 11, 7 }),
                 new(new int[4]),
                 new(new int[4]),
             };
