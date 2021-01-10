@@ -1,25 +1,31 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace WaterSortPuzzleSolver
 {
     public static class GameSolver
     {
-        public static (List<Vial> CurrentState, Stack<FluidMove> CurrentMoves, bool isSolved) RecursiveSolve(
-            List<Vial> vialState, Stack<FluidMove> moves, HashSet<string> movesHashSet)
+        public static GameSolution Solve(List<Vial> state)
         {
-            if (!ShouldContinue(vialState))
+            return RecursiveSolve(state, new Stack<FluidMove>(), new HashSet<string>());
+        }
+
+        public static GameSolution RecursiveSolve(List<Vial> state, Stack<FluidMove> moves,
+            HashSet<string> movesHashSet)
+        {
+            if (!ShouldContinue(state))
             {
-                return (vialState, moves, true);
+                return new GameSolution(state.Select(x => x.Clone()).ToList(), moves.Select(x => x).ToList());
             }
 
-            for (int i = 0; i < vialState.Count; i++)
+            for (int i = 0; i < state.Count; i++)
             {
-                for (int j = 0; j < vialState.Count; j++)
+                for (int j = 0; j < state.Count; j++)
                 {
                     if (i == j) continue;
 
-                    Vial from = vialState[i];
-                    Vial to = vialState[j];
+                    Vial from = state[i];
+                    Vial to = state[j];
                     int movableFluidAmount = FluidAmountCalculator.HowMuchFluidCanBeMoved(from, to);
                     if (movableFluidAmount != 0)
                     {
@@ -29,8 +35,8 @@ namespace WaterSortPuzzleSolver
                         movesHashSet.Add(move.UniqueMoveIdentifier);
                         moves.Push(move);
                         move.Execute();
-                        var result = RecursiveSolve(vialState, moves, movesHashSet);
-                        if (result.isSolved) return result;
+                        var result = RecursiveSolve(state, moves, movesHashSet);
+                        if (result.IsSolved) return result;
 
                         var reverseMove = moves.Pop();
                         reverseMove.Reverse();
@@ -39,7 +45,7 @@ namespace WaterSortPuzzleSolver
                 }
             }
 
-            return (vialState, moves, false);
+            return GameSolution.Unsolved;
         }
 
         private static bool ShouldContinue(IEnumerable<Vial> vialState)

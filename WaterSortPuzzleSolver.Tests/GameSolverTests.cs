@@ -27,12 +27,12 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
+            var result = GameSolver.Solve(vials);
 
             // Assert
             PrintVials("Result: ", vials);
-            Assert.Equal(result.CurrentState.Count, vials.Count);
-            foreach (var vial in result.CurrentState)
+            Assert.Equal(vials.Count, result.State.Count);
+            foreach (var vial in result.State)
             {
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
@@ -54,12 +54,12 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
+            var result = GameSolver.Solve(vials);
 
             // Assert
             PrintVials("Result: ", vials);
-            Assert.Equal(result.CurrentState.Count, vials.Count);
-            foreach (var vial in result.CurrentState)
+            Assert.Equal(vials.Count, result.State.Count);
+            foreach (var vial in result.State)
             {
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
@@ -85,12 +85,12 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
+            var result = GameSolver.Solve(vials);
 
             // Assert
             PrintVials("Result: ", vials);
-            Assert.Equal(result.CurrentState.Count, vials.Count);
-            foreach (var vial in result.CurrentState)
+            Assert.Equal(vials.Count, result.State.Count);
+            foreach (var vial in result.State)
             {
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
@@ -119,12 +119,12 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.RecursiveSolve(vials, new Stack<FluidMove>(), new HashSet<string>());
+            var result = GameSolver.Solve(vials);
 
             // Assert
             PrintVials("Result: ", vials);
-            Assert.Equal(result.CurrentState.Count, vials.Count);
-            foreach (var vial in result.CurrentState)
+            Assert.Equal(vials.Count, result.State.Count);
+            foreach (var vial in result.State)
             {
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
