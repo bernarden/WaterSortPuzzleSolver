@@ -20,8 +20,10 @@ namespace WaterSortPuzzleSolver
         private Vial OriginalToState { get; }
 
         private List<int> MovedFluid { get; set; } = new();
-        
+
         public string UniqueMoveIdentifier => $"{OriginalFromState} => {OriginalToState}";
+
+        public string MoveSummary => $"{OriginalFromState.Id} => {OriginalToState.Id}";
 
         public void Execute()
         {

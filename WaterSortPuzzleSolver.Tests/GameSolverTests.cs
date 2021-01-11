@@ -30,7 +30,7 @@ namespace WaterSortPuzzleSolver.Tests
             var result = GameSolver.Solve(vials);
 
             // Assert
-            PrintVials("Result: ", vials);
+            PrintSolution(result);
             Assert.Equal(vials.Count, result.State.Count);
             foreach (var vial in result.State)
             {
@@ -57,7 +57,7 @@ namespace WaterSortPuzzleSolver.Tests
             var result = GameSolver.Solve(vials);
 
             // Assert
-            PrintVials("Result: ", vials);
+            PrintSolution(result);
             Assert.Equal(vials.Count, result.State.Count);
             foreach (var vial in result.State)
             {
@@ -88,7 +88,7 @@ namespace WaterSortPuzzleSolver.Tests
             var result = GameSolver.Solve(vials);
 
             // Assert
-            PrintVials("Result: ", vials);
+            PrintSolution(result);
             Assert.Equal(vials.Count, result.State.Count);
             foreach (var vial in result.State)
             {
@@ -122,7 +122,7 @@ namespace WaterSortPuzzleSolver.Tests
             var result = GameSolver.Solve(vials);
 
             // Assert
-            PrintVials("Result: ", vials);
+            PrintSolution(result);
             Assert.Equal(vials.Count, result.State.Count);
             foreach (var vial in result.State)
             {
@@ -130,13 +130,21 @@ namespace WaterSortPuzzleSolver.Tests
             }
         }
 
-        private void PrintVials(string title, IEnumerable<Vial> vials)
+        private void PrintSolution(GameSolution solution)
         {
-            _testOutputHelper.WriteLine(title);
-
-            foreach (var vial in vials)
+            _testOutputHelper.WriteLine("Result:");
+            foreach (var vial in solution.State)
             {
                 _testOutputHelper.WriteLine(vial.ToString());
+            }
+
+            _testOutputHelper.WriteLine("");
+
+            _testOutputHelper.WriteLine("Moves:");
+            for (int index = 0; index < solution.Moves.Count; index++)
+            {
+                var move = solution.Moves[index];
+                _testOutputHelper.WriteLine($"{index + 1}: {move.MoveSummary}");
             }
         }
     }
