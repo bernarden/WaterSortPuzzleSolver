@@ -15,7 +15,7 @@ namespace WaterSortPuzzleSolver
         {
             if (!ShouldContinue(state))
             {
-                return new GameSolution(state.Select(x => x.Clone()).ToList(), moves.Select(x => x).ToList());
+                return new GameSolution(state.Select(x => x.Clone()).ToList(), moves.Select(x => x).Reverse().ToList());
             }
 
             for (int i = 0; i < state.Count; i++)
