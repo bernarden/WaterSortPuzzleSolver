@@ -104,8 +104,8 @@ namespace WaterSortPuzzleSolver.Tests
             {
                 new(new[] { 1, 2, 3, 4 }),
                 new(new[] { 2, 5, 3, 2 }),
-                new(new[] { 5, 4, 6, 7, }),
-                new(new[] { 8, 8, 9, 5, }),
+                new(new[] { 5, 4, 6, 7 }),
+                new(new[] { 8, 8, 9, 5 }),
                 new(new[] { 6, 9, 9, 1 }),
                 new(new[] { 10, 11, 4, 12 }),
                 new(new[] { 6, 10, 4, 3 }),
@@ -123,6 +123,7 @@ namespace WaterSortPuzzleSolver.Tests
 
             // Assert
             PrintSolution(result);
+            Assert.True(GameInputValidator.IsValidInput(vials));
             Assert.Equal(vials.Count, result.State.Count);
             foreach (var vial in result.State)
             {
@@ -130,6 +131,40 @@ namespace WaterSortPuzzleSolver.Tests
             }
         }
 
+        [Fact]
+        public void VeryDifficultScenario()
+        {
+            // Arrange
+            var vials = new List<Vial>
+            {
+                new(new[] { 1, 2, 3, 4 }),
+                new(new[] { 5, 5, 5, 1 }),
+                new(new[] { 6, 7, 8, 2 }),
+                new(new[] { 2, 9, 6, 10 }),
+                new(new[] { 4, 5, 3, 7 }),
+                new(new[] { 10, 10, 4, 11 }),
+                new(new[] { 12, 9, 2, 11 }),
+                new(new[] { 3, 7, 8, 6 }),
+                new(new[] { 12, 8, 9, 8 }),
+                new(new[] { 11, 12, 6, 1 }),
+                new(new[] { 4, 10, 11, 3 }),
+                new(new[] { 1, 9, 7, 12 }),
+                new(new int[4]),
+                new(new int[4]),
+            };
+            
+            // Act
+            var result = GameSolver.Solve(vials);
+
+            // Assert
+            PrintSolution(result);
+            Assert.Equal(vials.Count, result.State.Count);
+            foreach (var vial in result.State)
+            {
+                Assert.True(vial.IsEmpty || vial.IsComplete);
+            }
+        }
+        
         private void PrintSolution(GameSolution solution)
         {
             _testOutputHelper.WriteLine("Result:");
