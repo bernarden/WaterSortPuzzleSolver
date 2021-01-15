@@ -7,10 +7,15 @@ namespace WaterSortPuzzleSolver
     {
         public static GameSolution Solve(List<Vial> state)
         {
+            if (!GameInputValidator.IsValidInput(state))
+            {
+                return GameSolution.Unsolved;
+            }
+
             return RecursiveSolve(state, new Stack<FluidMove>(), new HashSet<string>());
         }
 
-        public static GameSolution RecursiveSolve(List<Vial> state, Stack<FluidMove> moves,
+        private static GameSolution RecursiveSolve(List<Vial> state, Stack<FluidMove> moves,
             HashSet<string> movesHashSet)
         {
             if (!ShouldContinue(state))

@@ -10,6 +10,8 @@ namespace WaterSortPuzzleSolver
 
         private readonly Stack<int> _content = new();
 
+        public IReadOnlyCollection<int> Content => _content;
+
         public Vial(IEnumerable<int> content)
         {
             Id = NextVialId;
