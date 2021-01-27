@@ -27,7 +27,7 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = new GameSolver().Solve(vials);
 
             // Assert
             PrintSolution(result);
@@ -54,7 +54,7 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = new GameSolver().Solve(vials);
 
             // Assert
             PrintSolution(result);
@@ -85,7 +85,7 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = new GameSolver().Solve(vials);
 
             // Assert
             PrintSolution(result);
@@ -119,7 +119,7 @@ namespace WaterSortPuzzleSolver.Tests
             };
 
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = new GameSolver().Solve(vials);
 
             // Assert
             PrintSolution(result);
@@ -152,9 +152,9 @@ namespace WaterSortPuzzleSolver.Tests
                 new(new int[4]),
                 new(new int[4]),
             };
-            
+
             // Act
-            var result = GameSolver.Solve(vials);
+            var result = new GameSolver().Solve(vials);
 
             // Assert
             PrintSolution(result);
@@ -164,7 +164,41 @@ namespace WaterSortPuzzleSolver.Tests
                 Assert.True(vial.IsEmpty || vial.IsComplete);
             }
         }
-        
+
+        [Fact]
+        public void ExtremelyDifficultScenario()
+        {
+            // Arrange
+            var vials = new List<Vial>
+            {
+                new(new[] { 1, 2, 3, 1 }),
+                new(new[] { 4, 5, 6, 7 }),
+                new(new[] { 2, 5, 3, 8 }),
+                new(new[] { 9, 8, 1, 4 }),
+                new(new[] { 3, 10, 9, 11 }),
+                new(new[] { 10, 12, 3, 9 }),
+                new(new[] { 9, 12, 12, 6 }),
+                new(new[] { 4, 7, 11, 5 }),
+                new(new[] { 5, 12, 11, 10 }),
+                new(new[] { 7, 2, 1, 6 }),
+                new(new[] { 11, 7, 2, 6 }),
+                new(new[] { 10, 8, 8, 4 }),
+                new(new int[4]),
+                new(new int[4]),
+            };
+
+            // Act
+            var result = new GameSolver().Solve(vials);
+
+            // Assert
+            PrintSolution(result);
+            Assert.Equal(vials.Count, result.State.Count);
+            foreach (var vial in result.State)
+            {
+                Assert.True(vial.IsEmpty || vial.IsComplete);
+            }
+        }
+
         private void PrintSolution(GameSolution solution)
         {
             _testOutputHelper.WriteLine("Result:");

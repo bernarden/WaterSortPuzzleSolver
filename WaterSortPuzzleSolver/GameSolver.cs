@@ -1,11 +1,11 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace WaterSortPuzzleSolver
 {
-    public static class GameSolver
+    public class GameSolver
     {
-        public static GameSolution Solve(List<Vial> state)
+        public GameSolution Solve(List<Vial> state)
         {
             if (!GameInputValidator.IsValidInput(state))
             {
@@ -15,7 +15,7 @@ namespace WaterSortPuzzleSolver
             return RecursiveSolve(state, new Stack<FluidMove>(), new HashSet<string>());
         }
 
-        private static GameSolution RecursiveSolve(List<Vial> state, Stack<FluidMove> moves,
+        private GameSolution RecursiveSolve(List<Vial> state, Stack<FluidMove> moves,
             HashSet<string> movesHashSet)
         {
             if (!ShouldContinue(state))
